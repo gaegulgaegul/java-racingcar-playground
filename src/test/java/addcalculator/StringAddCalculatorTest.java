@@ -11,7 +11,10 @@ public class StringAddCalculatorTest {
     @DisplayName("공백 또는 null인 경우 0 반환")
     void empty() {
         StringAddCalculator stringAddCalculator = new StringAddCalculator();
-        int result = stringAddCalculator.calculate("");
-        assertThat(result).isEqualTo(0);
+        int empty = stringAddCalculator.calculate("");
+        assertThat(empty).isEqualTo(0);
+
+        int nullValue = stringAddCalculator.calculate(null);
+        assertThat(nullValue).isEqualTo(0);
     }
 }
