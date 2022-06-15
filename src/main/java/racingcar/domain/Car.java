@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Car {
@@ -39,4 +40,5 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
 }

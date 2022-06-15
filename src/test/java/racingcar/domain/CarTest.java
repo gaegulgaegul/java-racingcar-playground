@@ -21,7 +21,7 @@ public class CarTest {
     void when_random_greater_then_four_then_forward() {
         Car car = new Car("pobi");
         car.forward(5);
-        assertThat(car.toString()).isEqualTo("pobi : -");
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
