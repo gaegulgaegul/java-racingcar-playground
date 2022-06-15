@@ -30,4 +30,12 @@ public class CarTest {
         assertThatThrownBy(() -> new Car("tooLongName"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("우승자와 같은 위치 정보인지 확인")
+    void it_max_position() {
+        Car car = new Car("pobi");
+        car.forward(5);
+        assertThat(car.isWinner(1)).isTrue();
+    }
 }
