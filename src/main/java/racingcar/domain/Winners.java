@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
+    public static final String COMMA_WITH_SPACE = ", ";
 
     private final List<Car> winners;
 
@@ -14,7 +15,7 @@ public class Winners {
     @Override
     public String toString() {
         return winners.stream()
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .map(car -> car.getName().toString())
+                .collect(Collectors.joining(COMMA_WITH_SPACE));
     }
 }

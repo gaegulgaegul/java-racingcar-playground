@@ -1,12 +1,12 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
     public static final String COMMA = ",";
+
     private final List<Car> cars;
 
     public Cars(String text) {
@@ -34,17 +34,16 @@ public class Cars {
 
 
     public Winners getWinners() {
-        int maxPosition = maxPosition();
         List<Car> winners = cars.stream()
-                .filter(car -> car.isWinner(maxPosition))
+                .filter(car -> car.isWinner(maxPosition()))
                 .collect(Collectors.toList());
         return new Winners(winners);
     }
 
-    public int maxPosition() {
+    public Position maxPosition() {
         return cars.stream()
                 .map(Car::getPosition)
-                .max(Comparator.naturalOrder())
-                .orElse(0);
+                .max(Position::compareTo)
+                .orElse(new Position());
     }
 }

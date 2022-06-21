@@ -12,8 +12,8 @@ public class CarTest {
     @DisplayName("자동차 이름을 입력하여 객체를 생성한다.")
     void create_car() {
         Car car = new Car("pobi");
-        assertThat(car.getName()).isEqualTo("pobi");
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getName()).isEqualTo(new Name("pobi"));
+        assertThat(car.getPosition()).isEqualTo(new Position());
     }
 
     @Test
@@ -21,7 +21,7 @@ public class CarTest {
     void when_random_greater_then_four_then_forward() {
         Car car = new Car("pobi");
         car.forward(5);
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(new Position(1));
     }
 
     @Test
@@ -36,6 +36,6 @@ public class CarTest {
     void it_max_position() {
         Car car = new Car("pobi");
         car.forward(5);
-        assertThat(car.isWinner(1)).isTrue();
+        assertThat(car.isWinner(new Position(1))).isTrue();
     }
 }

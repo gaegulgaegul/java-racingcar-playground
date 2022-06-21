@@ -1,47 +1,38 @@
 package racingcar.domain;
 
-import java.util.Objects;
-import java.util.stream.IntStream;
-
 public class Car {
-    private final String name;
-    private int position;
+    public static final String COLON_WITH_SPACE = " : ";
+
+    private final Name name;
+    private Position position;
 
     public Car(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5자 초과로 입력할 수 없습니다. " + name);
-        }
+        this(name, 0);
+    }
 
-        this.name = name;
-        this.position = 0;
+    public Car(String name, int position) {
+        this.name = new Name(name);
+        this.position = new Position(position);
     }
 
     public void forward(int random) {
-        if (random >= 4) {
-            this.position++;
-        }
+        this.position.move(random);
     }
 
     @Override
     public String toString() {
-        return this.name + " : " + getPositionView();
+        return this.name + COLON_WITH_SPACE + this.position;
     }
 
-    private String getPositionView() {
-        return IntStream.rangeClosed(1, this.position)
-                .mapToObj(i -> "-")
-                .reduce("", (acc, next) -> acc += next);
-    }
-
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public int getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public boolean isWinner(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isWinner(Position maxPosition) {
+        return this.position.equals(maxPosition);
     }
 }
